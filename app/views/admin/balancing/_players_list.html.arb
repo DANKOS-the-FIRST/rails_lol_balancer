@@ -1,0 +1,38 @@
+table do
+  thead do
+    tr align: 'center' do
+        td 'Player list', colspan: '2'
+    end
+  end
+  tbody do
+      tr do
+          td do
+              '№'
+          end
+          td do
+              'Username'
+          end
+          td do
+              'Strength'
+          end
+      end
+      i = 1
+      players = Player.where(id: session[:players_ids]).filter.sort_by(&:strength)
+      players.reverse!
+      players.each do |player|
+
+          tr do
+              td do
+                  "#{i}"
+              end
+              td do
+                  "#{player.username.to_s}"
+              end
+              td do
+                  "#{player.strength.to_s}"
+              end
+          end
+          i+=1
+      end
+  end
+end

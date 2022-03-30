@@ -1,0 +1,28 @@
+table class: 'table' do
+  thead do
+    tr align: 'center' do
+        td '№', bgcolor: "#aeaeb0"
+        td 'Team 1', colspan: '2', bgcolor: "#ff9985"
+        td 'Team 2', colspan: '2', bgcolor: "#8b85ff"
+    end
+  end
+  players = Player.where(id: session[:players_ids]).filter
+  players.sort_by! {|p| p.strength}
+  team1, team2 = [], []
+  (players.count / 2).times do
+
+  end
+  tbody do
+      i = 1
+      Player.where(id: session[:players_ids]).each do |player|
+          tr do
+              td "#{i}", align: 'center'
+              td "#{player.username.to_s}", class: 'table-success', align: 'center'
+              td "#{player.strength.to_s}", class: 'table-success', align: 'center'
+              td "#{player.username.to_s}", class: 'table-danger', align: 'center'
+              td "#{player.strength.to_s}", class: 'table-danger', align: 'center'
+          end
+          i+=1
+      end
+  end
+end
